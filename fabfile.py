@@ -26,7 +26,7 @@ def createdb():
     """
     Creates a new database instance.
     """
-    urun('echo "CREATE DATABASE ap_local;"|mysql --batch --user=root --password=password --host=localhost')
+    urun('echo "CREATE DATABASE devsninja;"|mysql --batch --user=root --password=password --host=localhost')
 
 
 @task
@@ -105,7 +105,7 @@ def deploy(git_ref, upgrade=False):
             delete=True,
             default_opts='-chrtvzP',
             extra_opts='--chmod=750',
-            exclude=["*.lock", "app/storage/", "vendor/"]
+            exclude=["*.env", "*.lock", "storage/", "vendor/"]
         )
 
     # Performs the deployment task, i.e. Install/upgrade project
