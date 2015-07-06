@@ -1,14 +1,17 @@
-<?php
+<?php namespace App\Http\Controllers\Auth;
 
-namespace App\Http\Controllers\Auth;
-
-use App\User;
 use Validator;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\User;
+
 
 class AuthController extends Controller
 {
+    protected $loginPath = '/login';
+    protected $redirectPath = '/successfull';
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -20,7 +23,7 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers;
+    use AuthenticatesUsers;
 
     /**
      * Create a new authentication controller instance.
@@ -42,7 +45,8 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'username' => 'required|max:45|unique:users',
+            'email' => 'required|email|max:65|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -53,12 +57,30 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+    public function signup(Request $request) {
+        if($request->isMethod('get')) {
+            return view('auth/signup');
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'username' => 'required|max:45|unique:users',
+            'email' => 'required|email|max:65|unique:users',
+            'password' => 'required|confirmed|min:6'
         ]);
+
+        if ($validator->fails()) {
+            return redirect('signup')->withErrors($validator)->withInput();
+        }
+
+        User::create([
+            'name' => $request->input('name'),
+            'username' => $request->input('username'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        return redirect('successfull');
     }
+
 }
