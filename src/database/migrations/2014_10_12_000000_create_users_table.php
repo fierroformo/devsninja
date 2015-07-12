@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('username', 45)->unique();
             $table->string('email', 65)->unique();
             $table->string('password', 60);
+            $table->string('code', 60);
             $table->boolean('manual_register')->default(false);
             $table->boolean('is_active')->default(false);
             $table->boolean('is_staff')->default(false);

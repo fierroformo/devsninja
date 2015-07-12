@@ -7,7 +7,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Gracias por registrarte</div>
 				<div class="panel-body">
-					Te hemos enviado un email de activación a tu cuenta de correo
+					Te hemos enviado un email de activación a la cuenta {{ $email }}
 				</div>
 			</div>
 		</div>
