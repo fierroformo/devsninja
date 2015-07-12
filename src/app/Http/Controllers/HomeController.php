@@ -1,8 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use Mail;
-use Illuminate\Http\Request;
-
 
 class HomeController extends Controller {
 
@@ -38,13 +35,6 @@ class HomeController extends Controller {
 
     public function home() {
 		return redirect('/');
-	}
-
-
-    public function successfull(Request $request) {
-        $email = $request->session()->get('email');
-        if(!$email) return redirect('login');
-		return view('successfull', ['email' => $email]);
 	}
 
 }

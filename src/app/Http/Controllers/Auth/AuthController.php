@@ -111,4 +111,10 @@ class AuthController extends Controller
         return redirect('successfull')->with('email', $user->email);
     }
 
+    public function successfull(Request $request) {
+        $email = $request->session()->get('email');
+        if(!$email) return redirect('login');
+		return view('successfull', ['email' => $email]);
+	}
+
 }
