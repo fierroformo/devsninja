@@ -128,9 +128,9 @@ def deploy(git_ref, upgrade=False):
             with cmd_msg(message, spaces=2):
                 run('php artisan down')
 
-            #message = white('Migrating database')
-            #with cmd_msg(message, spaces=2):
-            #    run('php artisan migrate --env={0}'.format(env.environment))
+            message = white('Migrating database')
+            with cmd_msg(message, spaces=2):
+                run('php artisan migrate --force')
 
             message = white('Setting file permissions')
             with cmd_msg(message, spaces=2):

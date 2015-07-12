@@ -8,21 +8,7 @@
         "user": "root",
         "environment": "staging",
         "group": "www-data",
-        "hosts": ["yoconciente.com"],
-        "site_dir": "/srv/www/ap/"
-    },
-    "fresnillo": {
-        "user": "root",
-        "environment": "fresnillo",
-        "group": "www-data",
-        "hosts": ["yoconciente.com"],
-        "site_dir": "/srv/www/fresnillo/"
-    },
-    "valparaiso": {
-        "user": "root",
-        "environment": "valparaiso",
-        "group": "www-data",
-        "hosts": ["yoconciente.com"],
-        "site_dir": "/srv/www/valparaiso/"
+        "hosts": ["devsninja.com"],
+        "site_dir": "/srv/www/devsninja/"
     }
 }
